@@ -41,8 +41,6 @@ module Yast
       Builtins.y2milestone("Network module started")
 
       Yast.import "Label"
-      Yast.import "Wizard"
-      Yast.import "CommandLine"
 
       # is this proposal or not?
       @propose = false
@@ -72,8 +70,10 @@ module Yast
 
       # main ui function
       if @propose
+        Yast.import "CommandLine"
         @ret = startDialog
       else
+        Yast.import "Wizard"
         @ret = CommandLine.Run(@cmdline_description)
       end
       Builtins.y2debug("ret=%1", @ret)
